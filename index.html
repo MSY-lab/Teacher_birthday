@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>선생님 생신</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =============================
+       처음 화면 : 닫힌 책
+  ============================== -->
+
+  <section id="intro">
+
+    <div class="light"></div>
+
+    <div class="desk-flower flower1">❀</div>
+    <div class="desk-flower flower2">𓆸</div>
+    <div class="desk-flower flower3">❀</div>
+
+    <div id="closedBook">
+      <img
+        src="images/closed_book.png"
+        alt="닫힌 책"
+      >
+    </div>
+
+    <p class="open-guide">
+      책을 눌러 열어보세요
+    </p>
+
+  </section>
+
+
+  <!-- =============================
+       펼친 책
+  ============================== -->
+
+  <section id="reader" class="hidden">
+
+    <div class="light"></div>
+
+    <div class="desk-flower reader-flower1">
+      𓆸
+    </div>
+
+    <div class="desk-flower reader-flower2">
+      ❀
+    </div>
+
+
+    <!-- 이전 -->
+
+    <button
+      id="prevBtn"
+      class="nav-button prev"
+      aria-label="이전 페이지"
+    >
+      ‹
+    </button>
+
+
+    <!-- 책 전체 -->
+
+    <div id="bookStage">
+
+      <img
+        id="openBookImage"
+        src="images/open_book.png"
+        alt="펼친 책"
+      >
+
+
+      <!-- 왼쪽 페이지 -->
+
+      <div
+        id="leftPage"
+        class="page-area left-page"
+      ></div>
+
+
+      <!-- 오른쪽 페이지 -->
+
+      <div
+        id="rightPage"
+        class="page-area right-page"
+      ></div>
+
+
+      <!-- 넘기는 종이 -->
+
+      <div id="flipPage">
+
+        <div
+          id="flipFront"
+          class="flip-face front"
+        ></div>
+
+        <div
+          id="flipBack"
+          class="flip-face back"
+        ></div>
+
+      </div>
+
+    </div>
+
+
+    <!-- 다음 -->
+
+    <button
+      id="nextBtn"
+      class="nav-button next"
+      aria-label="다음 페이지"
+    >
+      ›
+    </button>
+
+
+    <div id="pageNumber"></div>
+
+  </section>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>

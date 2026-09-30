@@ -1,0 +1,1269 @@
+@import url(
+  'https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap'
+);
+
+
+* {
+  box-sizing: border-box;
+}
+
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+}
+
+
+body {
+  overflow: hidden;
+
+  font-family:
+    "Gowun Batang",
+    serif;
+
+  color: #57483e;
+}
+
+
+.hidden {
+  display: none !important;
+}
+
+
+/* =====================================================
+   책상 배경
+===================================================== */
+
+#intro,
+#reader {
+  position: fixed;
+
+  inset: 0;
+
+  overflow: hidden;
+
+
+  background:
+
+    /* 세로 나무결 */
+
+    repeating-linear-gradient(
+      92deg,
+      transparent 0px,
+      transparent 115px,
+      rgba(77, 43, 23, 0.045) 117px,
+      transparent 121px
+    ),
+
+
+    /* 작은 결 */
+
+    repeating-linear-gradient(
+      3deg,
+      rgba(75, 45, 26, 0.018) 0px,
+      rgba(75, 45, 26, 0.018) 2px,
+      transparent 3px,
+      transparent 24px
+    ),
+
+
+    /* 전체 나무색 */
+
+    linear-gradient(
+      120deg,
+      #d8b897 0%,
+      #c69e79 52%,
+      #ad805e 100%
+    );
+}
+
+
+/* =====================================================
+   햇빛
+===================================================== */
+
+.light {
+  position: absolute;
+
+  width: 72vw;
+  height: 145vh;
+
+  left: -25vw;
+  top: -30vh;
+
+  transform:
+    rotate(-15deg);
+
+  background:
+    linear-gradient(
+      to right,
+      rgba(255, 250, 220, 0.48),
+      rgba(255, 247, 214, 0.12),
+      transparent 72%
+    );
+
+  filter:
+    blur(15px);
+
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   책상 꽃 장식
+===================================================== */
+
+.desk-flower {
+  position: absolute;
+
+  pointer-events: none;
+
+  user-select: none;
+
+  color: #75684c;
+
+  opacity: 0.38;
+}
+
+
+.flower1 {
+  left: 4%;
+  bottom: 5%;
+
+  font-size: 47px;
+
+  color: #a97e74;
+
+  transform:
+    rotate(-20deg);
+}
+
+
+.flower2 {
+  left: 8%;
+  bottom: -3%;
+
+  font-size: 150px;
+
+  transform:
+    rotate(-27deg);
+}
+
+
+.flower3 {
+  right: 7%;
+  top: 8%;
+
+  color: #96736c;
+
+  font-size: 43px;
+
+  transform:
+    rotate(24deg);
+}
+
+
+.reader-flower1 {
+  left: 1%;
+  bottom: -4%;
+
+  font-size: 160px;
+
+  transform:
+    rotate(-24deg);
+}
+
+
+.reader-flower2 {
+  right: 4%;
+  top: 4%;
+
+  font-size: 50px;
+
+  color: #9f7871;
+
+  transform:
+    rotate(24deg);
+}
+
+
+/* =====================================================
+   닫힌 책 화면
+===================================================== */
+
+#intro {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s ease;
+}
+
+
+#closedBook {
+  position: relative;
+
+  z-index: 10;
+
+  width:
+    min(475px, 51vw);
+
+  aspect-ratio:
+    1 / 1;
+
+  cursor: pointer;
+
+
+  transform:
+    rotate(-3deg);
+
+
+  filter:
+    drop-shadow(
+      0 27px 18px
+      rgba(49, 29, 17, 0.30)
+    );
+
+
+  transition:
+    transform 0.45s ease,
+    opacity 0.55s ease,
+    filter 0.45s ease;
+}
+
+
+#closedBook img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  user-select: none;
+
+  pointer-events: none;
+}
+
+
+#closedBook:hover {
+  transform:
+    translateY(-7px)
+    rotate(-1deg)
+    scale(1.025);
+
+
+  filter:
+    drop-shadow(
+      0 31px 21px
+      rgba(49, 29, 17, 0.33)
+    );
+}
+
+
+.open-guide {
+  position: relative;
+
+  z-index: 10;
+
+  margin-top: 3px;
+
+
+  font-size:
+    clamp(
+      16px,
+      1.3vw,
+      20px
+    );
+
+
+  color:
+    rgba(
+      70,
+      49,
+      34,
+      0.67
+    );
+
+
+  animation:
+    guideBlink
+    2.2s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes guideBlink {
+
+  0%,
+  100% {
+
+    opacity: 0.35;
+
+    transform:
+      translateY(0);
+
+  }
+
+
+  50% {
+
+    opacity: 1;
+
+    transform:
+      translateY(-2px);
+
+  }
+
+}
+
+
+/* 책 누른 후 */
+
+#intro.opening #closedBook {
+
+  transform:
+    rotate(0)
+    scale(1.11);
+
+  opacity: 0;
+
+}
+
+
+#intro.opening .open-guide {
+
+  opacity: 0;
+
+}
+
+
+#intro.fade-out {
+
+  opacity: 0;
+
+  transform:
+    scale(1.025);
+
+  pointer-events: none;
+
+}
+
+
+/* =====================================================
+   책 읽는 화면
+===================================================== */
+
+#reader {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+
+  animation:
+    readerAppear
+    0.8s ease;
+}
+
+
+@keyframes readerAppear {
+
+  from {
+
+    opacity: 0;
+
+  }
+
+
+  to {
+
+    opacity: 1;
+
+  }
+
+}
+
+
+/* =====================================================
+   펼친 책
+===================================================== */
+
+#bookStage {
+  position: relative;
+
+  z-index: 10;
+
+
+  width:
+    min(
+      1050px,
+      83vw
+    );
+
+
+  aspect-ratio:
+    1 / 1;
+
+
+  filter:
+    drop-shadow(
+      0 29px 22px
+      rgba(49, 28, 17, 0.29)
+    );
+
+
+  animation:
+    bookAppear
+    0.8s
+    cubic-bezier(
+      .2,
+      .8,
+      .2,
+      1
+    );
+}
+
+
+@keyframes bookAppear {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(25px)
+      scale(0.90);
+
+  }
+
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+}
+
+
+#openBookImage {
+  position: absolute;
+
+  inset: 0;
+
+
+  width: 100%;
+  height: 100%;
+
+
+  object-fit: contain;
+
+
+  user-select: none;
+
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   실제 페이지 글씨 영역
+===================================================== */
+
+.page-area {
+  position: absolute;
+
+  z-index: 20;
+
+
+  top: 24.5%;
+
+
+  width: 31.5%;
+  height: 50%;
+
+
+  display: flex;
+
+
+  overflow: hidden;
+
+
+  cursor: pointer;
+
+
+  padding:
+    3.2%
+    3.5%;
+}
+
+
+/* 원래 그림의 흐릿한 글씨를
+   아주 살짝 덮어줌 */
+
+.page-area::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 8%;
+
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(
+        255,
+        248,
+        230,
+        0.76
+      ),
+      rgba(
+        255,
+        248,
+        230,
+        0.51
+      )
+      58%,
+      transparent 88%
+    );
+
+
+  filter:
+    blur(7px);
+
+
+  pointer-events: none;
+}
+
+
+.left-page {
+  left: 14.5%;
+}
+
+
+.right-page {
+  right: 14.5%;
+}
+
+
+/* =====================================================
+   한 학생의 롤링페이퍼
+===================================================== */
+
+.message-sheet {
+  position: relative;
+
+  z-index: 2;
+
+
+  width: 100%;
+  height: 100%;
+
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+
+/* 메시지 */
+
+.message {
+  margin: 0;
+
+
+  font-size:
+    clamp(
+      14px,
+      1.15vw,
+      18px
+    );
+
+
+  line-height: 1.95;
+
+
+  letter-spacing:
+    -0.15px;
+
+
+  word-break:
+    keep-all;
+
+
+  color:
+    #4f443c;
+}
+
+
+/* 이름 */
+
+.student-name {
+  margin-top: 24px;
+
+
+  text-align: right;
+
+
+  font-size:
+    clamp(
+      13px,
+      1.05vw,
+      16px
+    );
+
+
+  font-weight: 700;
+
+
+  color:
+    #87685e;
+}
+
+
+/* 짧은 편지 */
+
+.message-sheet.short .message {
+
+  font-size:
+    clamp(
+      16px,
+      1.4vw,
+      21px
+    );
+
+  line-height: 2;
+
+}
+
+
+/* 긴 편지 */
+
+.message-sheet.long .message {
+
+  font-size:
+    clamp(
+      12px,
+      1vw,
+      16px
+    );
+
+  line-height: 1.8;
+
+}
+
+
+/* =====================================================
+   마지막 장
+===================================================== */
+
+.finish-page {
+  position: relative;
+
+  z-index: 2;
+
+
+  width: 100%;
+  height: 100%;
+
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+
+  text-align: center;
+}
+
+
+.finish-page p {
+
+  font-size:
+    clamp(
+      18px,
+      1.6vw,
+      24px
+    );
+
+
+  line-height: 2;
+
+
+  color:
+    #74594f;
+
+}
+
+
+/* 선생님 사진 */
+
+.teacher-photo {
+  position: relative;
+
+
+  width: 80%;
+
+
+  padding:
+    7px
+    7px
+    30px;
+
+
+  background:
+    #fffdf8;
+
+
+  transform:
+    rotate(-2.7deg);
+
+
+  box-shadow:
+    0 9px 16px
+    rgba(
+      55,
+      35,
+      22,
+      0.19
+    );
+}
+
+
+/* 마스킹테이프 */
+
+.teacher-photo::before {
+  content: "";
+
+
+  position: absolute;
+
+  z-index: 5;
+
+
+  width: 78px;
+  height: 21px;
+
+
+  left: 50%;
+  top: -11px;
+
+
+  transform:
+    translateX(-50%)
+    rotate(2deg);
+
+
+  background:
+    rgba(
+      207,
+      180,
+      138,
+      0.66
+    );
+}
+
+
+.teacher-photo img {
+  display: block;
+
+
+  width: 100%;
+
+
+  aspect-ratio:
+    0.82;
+
+
+  object-fit: cover;
+}
+
+
+.photo-text {
+
+  margin-top: 10px;
+
+
+  font-size:
+    clamp(
+      13px,
+      1vw,
+      16px
+    );
+
+
+  color:
+    #80685d;
+
+}
+
+
+/* =====================================================
+   페이지 넘기는 종이
+===================================================== */
+
+/* =====================================================
+   실제 책장 넘김
+===================================================== */
+
+#flipPage {
+  position: absolute;
+
+  z-index: 70;
+
+  display: none;
+
+  /*
+    글씨 영역이 아니라
+    실제 책 종이 전체 크기에 맞춤
+  */
+  top: 17.5%;
+  left: 50%;
+
+  width: 41.5%;
+  height: 63%;
+
+  transform-origin: left center;
+  transform-style: preserve-3d;
+
+  perspective: 2200px;
+
+  pointer-events: none;
+
+  will-change: transform;
+}
+
+
+#flipPage.active {
+  display: block;
+}
+
+
+/* =====================================================
+   넘기는 종이 앞 / 뒤
+===================================================== */
+
+.flip-face {
+  position: absolute;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  /*
+    절대 둥글게 하지 않음
+  */
+  border-radius: 0 !important;
+
+  /*
+    책 그림의 종이처럼
+    아주 미세하게 각이 다른 형태
+  */
+  clip-path: polygon(
+    0% 1%,
+    97.5% 0%,
+    100% 2.5%,
+    99.5% 97%,
+    97% 100%,
+    0% 99%
+  );
+
+  padding:
+    12% 12%
+    12% 13%;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  background:
+
+    /* 미세한 종이 얼룩 */
+
+    radial-gradient(
+      circle at 24% 18%,
+      rgba(222, 191, 137, 0.10),
+      transparent 28%
+    ),
+
+    radial-gradient(
+      circle at 77% 76%,
+      rgba(216, 182, 124, 0.08),
+      transparent 30%
+    ),
+
+    /* 종이 */
+
+    linear-gradient(
+      110deg,
+      #fff9e9 0%,
+      #faefd7 58%,
+      #f1ddba 100%
+    );
+
+  box-shadow:
+    inset 0 0 8px
+    rgba(116, 82, 49, 0.07);
+
+  color: #51463d;
+}
+
+
+/* 종이 가장자리 */
+
+.flip-face::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  border:
+    1px solid
+    rgba(106, 78, 51, 0.13);
+
+  clip-path: polygon(
+    0% 1%,
+    97.5% 0%,
+    100% 2.5%,
+    99.5% 97%,
+    97% 100%,
+    0% 99%
+  );
+}
+
+
+/* 넘기는 동안 생기는 종이 음영 */
+
+.flip-face::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  background:
+    linear-gradient(
+      to right,
+      rgba(71, 49, 31, 0.25),
+      rgba(71, 49, 31, 0.06) 30%,
+      transparent 70%
+    );
+}
+
+
+/* 뒷면 */
+
+.flip-face.back {
+  transform: rotateY(180deg);
+
+  /*
+    앞뒷면 모두 네모난 종이.
+    둥근 모서리 없음.
+  */
+  border-radius: 0 !important;
+
+  background:
+
+    radial-gradient(
+      circle at 70% 25%,
+      rgba(222, 191, 137, 0.09),
+      transparent 30%
+    ),
+
+    linear-gradient(
+      250deg,
+      #fff9e9 0%,
+      #f9edd4 60%,
+      #f0dbb7 100%
+    );
+}
+
+
+/* =====================================================
+   다음 페이지
+   오른쪽 → 왼쪽
+===================================================== */
+
+#flipPage.turn-next {
+  animation:
+    turnNext
+    1.15s
+    cubic-bezier(
+      .58,
+      .04,
+      .18,
+      .98
+    )
+    forwards;
+}
+
+
+/*
+  살짝 휘어지는 느낌까지 줌.
+  너무 과하면 종이가 고무처럼 보여서
+  아주 조금만 변형함.
+*/
+
+@keyframes turnNext {
+
+  0% {
+    transform:
+      rotateY(0deg)
+      translateZ(0);
+
+    filter:
+      brightness(1);
+  }
+
+
+  18% {
+    transform:
+      rotateY(-28deg)
+      translateZ(5px);
+
+    filter:
+      brightness(0.98);
+  }
+
+
+  43% {
+    transform:
+      rotateY(-76deg)
+      translateZ(10px)
+      scaleX(0.985);
+
+    filter:
+      brightness(0.88);
+  }
+
+
+  50% {
+    transform:
+      rotateY(-90deg)
+      translateZ(12px)
+      scaleX(0.98);
+
+    filter:
+      brightness(0.78);
+  }
+
+
+  60% {
+    transform:
+      rotateY(-110deg)
+      translateZ(9px)
+      scaleX(0.985);
+
+    filter:
+      brightness(0.87);
+  }
+
+
+  82% {
+    transform:
+      rotateY(-155deg)
+      translateZ(4px);
+
+    filter:
+      brightness(0.97);
+  }
+
+
+  100% {
+    transform:
+      rotateY(-180deg)
+      translateZ(0);
+
+    filter:
+      brightness(1);
+  }
+
+}
+
+
+/* 넘기는 동안 그림자 */
+
+#flipPage.turn-next .front::after {
+  animation:
+    nextPageShadow
+    1.15s ease forwards;
+}
+
+
+@keyframes nextPageShadow {
+
+  0% {
+    opacity: 0;
+  }
+
+  38% {
+    opacity: 0.65;
+  }
+
+  55% {
+    opacity: 0.40;
+  }
+
+  100% {
+    opacity: 0;
+  }
+
+}
+
+
+/* =====================================================
+   이전 페이지
+   왼쪽 → 오른쪽
+===================================================== */
+
+#flipPage.previous-mode {
+  left: 8.5%;
+
+  transform-origin:
+    right center;
+}
+
+
+#flipPage.turn-prev {
+  animation:
+    turnPrev
+    1.15s
+    cubic-bezier(
+      .58,
+      .04,
+      .18,
+      .98
+    )
+    forwards;
+}
+
+
+@keyframes turnPrev {
+
+  0% {
+    transform:
+      rotateY(0deg)
+      translateZ(0);
+
+    filter:
+      brightness(1);
+  }
+
+
+  18% {
+    transform:
+      rotateY(28deg)
+      translateZ(5px);
+
+    filter:
+      brightness(0.98);
+  }
+
+
+  43% {
+    transform:
+      rotateY(76deg)
+      translateZ(10px)
+      scaleX(0.985);
+
+    filter:
+      brightness(0.88);
+  }
+
+
+  50% {
+    transform:
+      rotateY(90deg)
+      translateZ(12px)
+      scaleX(0.98);
+
+    filter:
+      brightness(0.78);
+  }
+
+
+  60% {
+    transform:
+      rotateY(110deg)
+      translateZ(9px)
+      scaleX(0.985);
+
+    filter:
+      brightness(0.87);
+  }
+
+
+  82% {
+    transform:
+      rotateY(155deg)
+      translateZ(4px);
+
+    filter:
+      brightness(0.97);
+  }
+
+
+  100% {
+    transform:
+      rotateY(180deg)
+      translateZ(0);
+
+    filter:
+      brightness(1);
+  }
+
+}
+
+
+#flipPage.turn-prev .front::after {
+  animation:
+    previousPageShadow
+    1.15s ease forwards;
+}
+
+
+@keyframes previousPageShadow {
+
+  0% {
+    opacity: 0;
+  }
+
+  38% {
+    opacity: 0.60;
+  }
+
+  55% {
+    opacity: 0.38;
+  }
+
+  100% {
+    opacity: 0;
+  }
+
+}
